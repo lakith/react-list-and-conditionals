@@ -29,7 +29,7 @@ class App extends Component {
 
     this.setState({
       persons: persons
-    })
+    });
   }
 
   displayPersons = ()=>{
@@ -40,15 +40,15 @@ class App extends Component {
   }
 
   deletePerson = (personIndex)=>{
-    const persons  = [...this.state.persons];
-    persons.splice(personIndex,1);
-    this.setState({persons : persons}); 
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   }
 
   render() {
 
     const style={
-      backgroundColor:"white",
+      backgroundColor:"green",
       border:"1px solid blue",
       borderRadious:"2px",
       padding:"8px",
@@ -61,9 +61,10 @@ class App extends Component {
     person = (
       <div>
         {this.state.persons.map((person,index) =>{
+          console.log(index);
           return (
             <Person
-              click = {this.deletePerson.bind(index)} 
+              click = {() => this.deletePerson(index)} 
               name = {person.name}
               age = {person.age}
               key = {person.id}
@@ -73,6 +74,7 @@ class App extends Component {
         })}
       </div>
     );
+    style.backgroundColor = 'red';
   }
 
     return (
