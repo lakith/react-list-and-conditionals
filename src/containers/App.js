@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Classes from '../containers/App.css';
-import Person from '../components/Persons/Person/Person';
-import ErrorBoundry from '../components/ErrorBoundary/ErrorBoundary'
+import Persons from '../components/Persons/Persons'
+import CockPit from '../components/CockPit/Cockpit'
+import Classes from './App.css'
 
 class App extends Component {
 
@@ -48,55 +48,30 @@ class App extends Component {
 
   render() {
 
-    const style={
-      backgroundColor:"green",
-      border:"1px solid blue",
-      borderRadious:"2px",
-      padding:"8px",
-      cursor:"pointer",
-      ':hover':{
-        backgroundColor : 'lightgreen',
-        color:'black'
-      }
-  };
-
   let person = null;
-  let cssModStyle = "";
 
   if( this.state.showPersons){
     person = (
-      <div>
-        {this.state.persons.map((person,index) =>{
-          console.log(index);
-          return (
-            <ErrorBoundry key = {person.id}>
-            <Person
-              click = {() => this.deletePerson(index)} 
-              name = {person.name}
-              age = {person.age}
-              change = {(event) => this.clickEvent(event,person.id)}
+        
+            <Persons 
+              persons = {this.state.persons}
+              click = {this.deletePerson}
+              change = {this.clickEvent}
             />
-            </ErrorBoundry>
-            );
-        })}
-      </div>
+        
     );
-        cssModStyle = Classes.Red;
   } 
 
-  let styleClasses = [];
-  if(this.state.persons.length === 2){
-    styleClasses.push(Classes.red);
-  } if(this.state.persons.length >= 2){
-    styleClasses.push(Classes.bold);
-  }
-
-    return (
-        <div className= {Classes.App}>
-          <h1 className = {styleClasses.join(' ')}>Hello From React</h1>
-          <button className = {cssModStyle} onClick={this.displayPersons} style={style} >Click me</button>
+      return (
+        <div className={Classes.App}>
+        <CockPit 
+          persons = {this.state.persons}
+          showPersons = {this.state.showPersons}
+          click = {this.displayPersons}
+        />
           {person}
         </div>
+        
     );
   }
 }
