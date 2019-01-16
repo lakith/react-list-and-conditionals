@@ -32,7 +32,7 @@ const CockPit = (props) => {
 
     return(
         <div className= {Classes.CockPit}>
-          <h1 className = {styleClasses.join(' ')}>Hello From React</h1>
+          <h1 className = {styleClasses.join(' ')}>{props.appTitle}</h1>
           <button className = {cssModStyle} onClick={props.click} style={style} >Click me</button>
           {person}
         </div>

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Persons from '../components/Persons/Persons'
 import CockPit from '../components/CockPit/Cockpit'
 import Classes from './App.css'
 
-class App extends Component {
+class App extends PureComponent {
 
   state = {
     persons:[
@@ -12,6 +12,11 @@ class App extends Component {
             ],
     showPersons :false
          };
+ 
+  // shouldComponentUpdate(nextProp,nextState){
+  //   return nextState.persons !== this.state.persons ||
+  //          nextState.showPersons !== this.state.showPersons
+  // }
 
   clickEvent = (event,personId) => {
     
@@ -60,11 +65,17 @@ class App extends Component {
             />
         
     );
-  } 
+  }   
+
+  let style = {
+    "marginTop":"20px"
+  }
 
       return (
         <div className={Classes.App}>
-        <CockPit 
+        <button style = {style} onClick = {()=>{this.setState({showPersons:true})}}>always true</button>
+        <CockPit
+          appTitle = {this.props.title} 
           persons = {this.state.persons}
           showPersons = {this.state.showPersons}
           click = {this.displayPersons}
