@@ -1,26 +1,27 @@
 import React from 'react';
 import Classes from '../CockPit/CockPit.css'
+//import Aux from '../../hoc/Aux'
 
 const CockPit = (props) => {
 
-    const style={
-        backgroundColor:"green",
-        border:"1px solid blue",
-        borderRadious:"2px",
-        padding:"8px",
-        cursor:"pointer",
-        ':hover':{
-          backgroundColor : 'lightgreen',
-          color:'black'
-        }
-    };
+    // const style={
+    //     backgroundColor:"green",
+    //     border:"1px solid blue",
+    //     borderRadious:"2px",
+    //     padding:"8px",
+    //     cursor:"pointer",
+    //     ':hover':{
+    //       backgroundColor : 'lightgreen',
+    //       color:'black'
+    //     }
+    // };
     
 
   let person = null;
-  let cssModStyle = "";
+  let cssModStyle = Classes.Button;
 
   if( props.showPersons){
-        cssModStyle = Classes.Red;
+        cssModStyle = [Classes.Button , Classes.Red].join(' ');
   } 
     
     let styleClasses = [];
@@ -31,11 +32,13 @@ const CockPit = (props) => {
     }
 
     return(
-        <div className= {Classes.CockPit}>
+        //<Aux>
+        <>
           <h1 className = {styleClasses.join(' ')}>{props.appTitle}</h1>
-          <button className = {cssModStyle} onClick={props.click} style={style} >Click me</button>
+          <button className = {cssModStyle} onClick={props.click}>Click me</button>
           {person}
-        </div>
+        </>
+        //</Aux>
     )
 
 }
