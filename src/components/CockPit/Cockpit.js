@@ -17,7 +17,6 @@ const CockPit = (props) => {
     // };
     
 
-  let person = null;
   let cssModStyle = Classes.Button;
 
   if( props.showPersons){
@@ -36,7 +35,7 @@ const CockPit = (props) => {
         <>
           <h1 className = {styleClasses.join(' ')}>{props.appTitle}</h1>
           <button className = {cssModStyle} onClick={props.click}>Click me</button>
-          {person}
+          <button className = {Classes.Buton_2} onClick={props.signUpUser}> Login </button>
         </>
         //</Aux>
     )
