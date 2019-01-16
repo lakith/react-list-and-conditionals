@@ -11,7 +11,8 @@ class App extends PureComponent {
       {id : "key-1234", name:'Lakith Muthugala',age:23},
       {id : "key-5678", name:'Hansi yapa', age:29}
             ],
-    showPersons :false
+    showPersons :false,
+    toggleClicked:0
          };
  
   // shouldComponentUpdate(nextProp,nextState){
@@ -41,8 +42,13 @@ class App extends PureComponent {
 
   displayPersons = ()=>{
     const display = this.state.showPersons;
-    this.setState({
-                    showPersons : !display
+    this.setState( (prevState,props) => {
+                    
+                    return {
+                      showPersons : !display,
+                      toggleClicked : prevState.toggleClicked +1
+                    }
+
                   })
   }
 
@@ -73,19 +79,19 @@ class App extends PureComponent {
   }
 
       return (
-        <WithClass classes= {Classes.App}>
-        <button style = {style} onClick = {()=>{this.setState({showPersons:true})}}>always true</button>
-        <CockPit
-          appTitle = {this.props.title} 
-          persons = {this.state.persons}
-          showPersons = {this.state.showPersons}
-          click = {this.displayPersons}
-        />
-          {person}
-          </WithClass>
+        <>
+            <button style = {style} onClick = {()=>{this.setState({showPersons:true})}}>always true</button>
+            <CockPit
+              appTitle = {this.props.title} 
+              persons = {this.state.persons}
+              showPersons = {this.state.showPersons}
+              click = {this.displayPersons}
+            />
+              {person}
+        </ >
         
     );
   }
 }
 
-export default App;
+export default WithClass(App,Classes.App);
